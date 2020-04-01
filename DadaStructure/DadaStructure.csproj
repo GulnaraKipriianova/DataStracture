@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ArrayList.cs~RF108a321a.TMP" />
+    <None Remove="ArrayList.cs~RF1f6e2cad.TMP" />
+    <None Remove="ArrayList.cs~RF1f9884a5.TMP" />
+    <None Remove="ArrayList.cs~RF1fc52e4c.TMP" />
+    <None Remove="ArrayList.cs~RF203bfa87.TMP" />
+  </ItemGroup>
+
+</Project>
