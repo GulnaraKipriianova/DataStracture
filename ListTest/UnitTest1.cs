@@ -37,11 +37,22 @@ namespace ListTests
             }
         }
 
-        [TestCase (new int[] {1, 1, 1, 1}, 0, ExpectedResult =new int[] {1, 1, 1, 1, 0})]
-        public int[] AddTest(int[] array, int a)
+        [TestCase(new int[] {1, 1, 1, 1}, 0, ExpectedResult =new int[] {1, 1, 1, 1, 0})]
+        [TestCase(new int[] {1}, 0, ExpectedResult = new int[] { 1, 0 })]
+        [TestCase(new int[] {}, 1, ExpectedResult = new int[] { 1 })]
+        public int[] AddTheEndTest(int[] array, int a)
         {
             actual.AddTheEnd(array);
             actual.AddTheEnd(a);
+            return actual.ReturnArray();
+        }
+        [TestCase(new int[] { 1, 1, 1, 1 }, 0, ExpectedResult = new int[] {0, 1, 1, 1, 1 })]
+        [TestCase(new int[] { 1 }, 0, ExpectedResult = new int[] { 0, 1})]
+        [TestCase(new int[] { }, 1, ExpectedResult = new int[] { 1 })]
+        public int[] AddTheStartTest(int[] array, int a)
+        {
+            actual.AddTheStart(array);
+            actual.AddTheStart(a);
             return actual.ReturnArray();
         }
 

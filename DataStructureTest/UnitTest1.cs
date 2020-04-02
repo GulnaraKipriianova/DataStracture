@@ -34,6 +34,7 @@ namespace DataStructureTest
 
         //AddTheStartTest
         [TestCase(new int[] { 3, 4, 6 }, 7, ExpectedResult = new int[] { 7, 3, 4, 6 })]
+        [TestCase(new int[] { 3}, 7, ExpectedResult = new int[] { 7, 3  })]
         [TestCase(new int[] { }, 7, ExpectedResult = new int[] { 7 })]
         public int[] AddTheStartTest(int[] array, int a)
         {

@@ -115,12 +115,11 @@ namespace DadaStructure.ArrayList
                 UpArraySize();
             }
             length++;
-            for(int i = array.Length - 2; i>0; i-- )
+            for(int i = array.Length - 1; i>0; i-- )
             {
                 array[i] = array[i-1];
             }
             array[0] = a;
-            
         }
         public void AddTheStart(int[] a) //добавление N элементof в начало !!!!!!!!!!
         {
