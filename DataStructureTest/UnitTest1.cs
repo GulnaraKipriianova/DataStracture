@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using DadaStructure;
+using DadaStructure.ArrayList;
 
 namespace DataStructureTest
 {

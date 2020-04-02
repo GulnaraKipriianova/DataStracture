@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DadaStructure
+namespace DadaStructure.ArrayList
 {
-    public class ArrayList: IArrayList
+    public class ArrayList: IList
     {
         private int[] array;
         private int length;
@@ -13,7 +13,7 @@ namespace DadaStructure
         private int minIdx;
         private int maxIdx;
         private int val;
-        public int this[int a] 
+        public int this[int a] //Доступ по индексу, изм по индексу 
         {
             get { return array[a]; }
             set
@@ -165,7 +165,7 @@ namespace DadaStructure
             }
 
         }
-        public void AddTheIndex(int indx, int [] a) //добавление элемента по индексу 
+        public void AddTheIndex(int indx, int [] a) //добавление N элементof по индексу 
         {
             if (length != 0)
             {
@@ -344,7 +344,7 @@ namespace DadaStructure
              return maxIdx;
             }
         }
-        public void MaxMinSelect() // Сортировка по возрастанию
+        public void MaxMinSelect() // Сортировка по убыв
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -361,7 +361,7 @@ namespace DadaStructure
                 array[i] = temp;
             }
         }
-        public void MinMaxBubble() // Сортировка по убыванию
+        public void MinMaxBubble() // Сортировка по возраст
         {
             int temp;
             for (int i = 0; i < array.Length; i++)
@@ -404,8 +404,6 @@ namespace DadaStructure
             }
 
         }
-
-        
     }
 }
 

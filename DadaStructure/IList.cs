@@ -4,11 +4,9 @@ using System.Text;
 
 namespace DadaStructure
 {
-    interface IArrayList
+   public interface IList
     {
         public int[] ReturnArray(); //возврат массива
-        public int Length { get; } //возврат длины
-        public void UpArraySize(); //увеличение длинны массива
         public void AddTheEnd(int a); //добавление в конец массива одного числа
         public void AddTheEnd(int[] a); //добавление в конец массива  несколько чисел
         public void AddTheStart(int a); //добавление элемента в начало
