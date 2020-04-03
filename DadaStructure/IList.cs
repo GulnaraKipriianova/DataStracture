@@ -24,8 +24,8 @@ namespace DadaStructure
         public int Minimum { get; }
         public int MinI { get; }
         public int MaxI { get; }
-        public void MaxMinSelect(); // Сортировка по возрастанию
-        public void MinMaxBubble(); // Сортировка по убыванию
+        public void MaxMin(); // Сортировка по убыв
+        public void MinMax(); // Сортировка по возрас
         public void IndexbyValue(int val); //Индекс по знаению
         public void DeletbyValue(int val); //Удалит по значению
     }

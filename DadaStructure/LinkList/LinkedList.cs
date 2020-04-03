@@ -8,39 +8,171 @@ namespace DadaStructure.LinkList
     {
         private Node root;
 
-        public int Lenght { get; private set; }
+        public int Length { get; private set; }
+        public int this[int a] //Доступ по индексу, изм по индексу 
+        {
+            //get { return Node; }
+            set
+            {
+                if (Length != 0)
+                {
+                    Node tmp = root;
+                    for (int i = 0; i < a; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Value = value;
+                }
+                else
+                {
+                    throw new Exception("Индекс выходит за границы списка");
+                }
+            }
+        }
+        public int Maximum
+        {
+            get
+            {
+                Node tmp = root;
+                Node max = root;
+                if (Length == 0)
+                {
+                    root = new Node(0);
+                    Length = 1;
+                    max.Value = 0;
+                }
+                else
+                {
+                    for (int i = 1; i < Length; i++)
+                    {
+                        tmp = tmp.Next;
+                        if (tmp.Value > max.Value)
+                        {
+                            max = tmp;
+                        }
+                    }
+                }
+                return max.Value;
+            }
+        }
+        public int Minimum
+        {
+            get
+            {
+                Node tmp = root;
+                Node min = root;
+                if (Length == 0)
+                {
+                    root = null;
+                    Length = 0;
+                    min.Value = 0;
+                }
+                else
+                {
+                    for (int i = 1; i < Length; i++)
+                    {
+                        tmp = tmp.Next;
+                        if (tmp.Value < min.Value)
+                        {
+                            min = tmp;
+                        }
+                    }
+                }
+                return min.Value;
+            }
+        }
 
-        public int Maximum => throw new NotImplementedException();
-
-        public int Minimum => throw new NotImplementedException();
-
-        public int MinI => throw new NotImplementedException();
-
-        public int MaxI => throw new NotImplementedException();
+        public int MinI
+        {
+            get
+            {
+                Node number = root;
+                Node tmp = root;
+                Node min = root;
+                if (Length == 0)
+                {
+                    root = new Node(0);
+                    Length = 1;
+                    number = null;
+                }
+                else
+                {
+                    for (int i = 1; i < Length; i++)
+                    {
+                        tmp = tmp.Next;
+                        if (tmp.Value < min.Value)
+                        {
+                            min = tmp;
+                            number.Value = i;
+                        }
+                    }
+                }
+                return number.Value;
+            }
+        }
+        public int MaxI
+        {
+            get
+            {
+                Node number = root;
+                Node tmp = root;
+                Node max = root;
+                if (Length == 0)
+                {
+                    root = new Node(0);
+                    Length = 1;
+                    number = null;
+                }
+                else
+                {
+                    for (int i = 1; i < Length; i++)
+                    {
+                        tmp = tmp.Next;
+                        if (tmp.Value > max.Value)
+                        {
+                            max = tmp;
+                            number.Value = i;
+                        }
+                    }
+                }
+                return number.Value;
+            }
+        }
 
         public LinkedList()
         {
             root = null;
-            Lenght = 0;
+            Length = 0;
         }
 
         public LinkedList(int a)
         {
             root = new Node(a);
-            Lenght = 1;
+            Length = 1;
         }
-       
+        public LinkedList(int[] a)
+        {
+            if (a.Length == null)
+            {
+                root = null;
+                Length = 0;
+            }
+            for (int i = a.Length -1; i > 0; i--)
+            {
+                AddTheStart(a[i]);
+            }
+        }
         public void AddTheEnd(int a)
         {
-            if (Lenght == 0)//(root==null)
+            if (Length == 0)//(root==null)
             {
                 root = new Node(a);
-                Lenght = 1;
+                Length = 1;
             }
-            else if (Lenght == 1)//(root!=null&&root.Next==null)
+            else if (Length == 1)//(root!=null&&root.Next==null)
             {
                 root.Next = new Node(a);
-                Lenght++;
+                Length++;
             }
             else
             {
@@ -50,7 +182,7 @@ namespace DadaStructure.LinkList
                     tmp = tmp.Next;
                 }
                 tmp.Next = new Node(a);
-                Lenght++;
+                Length++;
             }
         }
         public void AddTheEnd(int[] a)
@@ -62,8 +194,8 @@ namespace DadaStructure.LinkList
         }
         public int[] ReturnArray()
         {
-            int[] array = new int[Lenght];
-            if (Lenght != 0)
+            int[] array = new int[Length];
+            if (Length != 0)
             {
                 int i = 0;
                 Node tmp = root;
@@ -82,7 +214,7 @@ namespace DadaStructure.LinkList
             Node tmp = new Node(a);
             tmp.Next = root;
             root = tmp;
-            Lenght++;
+            Length++;
         }
         public void AddTheStart(int[] a)
         {
@@ -93,43 +225,59 @@ namespace DadaStructure.LinkList
         }
         public void AddTheIndex(int indx, int a)
         {
-            Node tmp = root;
-            Node add = new Node(a);
-            for (int i = 1; i<indx; i++)
+            if (root == null)
+            AddTheEnd(a);
+            else
             {
-                tmp = tmp.Next;
-            }
-            add.Next = tmp.Next;
-            tmp.Next = add;
-            Lenght++;      
+                Node tmp = root;
+                Node add = new Node(a);
+                for (int i = 1; i < indx; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                add.Next = tmp.Next;
+                tmp.Next = add;
+                Length++;
+            } 
         }
-       
-
         public void AddTheIndex(int indx,  int[] a)
         {
-            for (int i = 0; i < a.Length; i++)
+            //if (indx > Length || indx < 0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
+            if (root == null)
+                AddTheEnd(a);
+            else
             {
-                for (int j = indx; j < a.Length; j++)
-                AddTheIndex(j, a[i]);
+                for (int i = 0; i < a.Length; i++)
+                {
+                    AddTheIndex(indx, a[i]);
+                    indx++;
+                }
             }
         }
-
         public void RemoveFromStart()
         {
             if (root == null)
             {
-                throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
             }
             else
             {
                 Node tmp = root;
                 root = tmp.Next;
-                Lenght--;
+                Length--;
             }
         }
-
         public void RemoveFromStart(int a)
         {
+            //if (a > Length || a < 0)
+            //{
+            //    throw new Exception("Ваше число не подходит");
+            //}
             for (int i = 1; i<=a; i++)
             {
                 RemoveFromStart();
@@ -140,19 +288,35 @@ namespace DadaStructure.LinkList
         {
             if (root == null)
             {
-                throw new Exception("Нельзя удалить первый элемент из пустого списка");
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
             }
-            Node tmp = root;
-            while (tmp.Next.Next != null)
+            else
             {
-                tmp = tmp.Next; 
+                Node tmp = root;
+                while (tmp.Next.Next != null)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Next = null;
+                Length--;
             }
-            tmp.Next = null;
-            Lenght--;
         }
 
         public void RemoveFromEnd(int a)
         {
+            //if (a > Length || a < 0)
+            //{
+            //    throw new Exception("Ваше число не подходит");
+            //}
+            if (root == null)
+            {
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
+            }
+            else
             for (int i = 0; i< a; i ++)
             {
                 RemoveFromEnd();
@@ -161,36 +325,93 @@ namespace DadaStructure.LinkList
 
         public void RemovebyIndex(int n)
         {
-            Node tmp = root;
-            for (int i = 1; i < n-1; i++)
+            //if (n > Length || n<0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
+            if (root == null)
             {
-                tmp = tmp.Next;
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
             }
-            tmp.Next = tmp.Next.Next;
-            Lenght--;
+            else
+            {
+                Node tmp = root;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Next = tmp.Next.Next;
+                Length--;
+            }
         }
 
         public void RemovebyIndex(int n, int m)
         {
-            for (int i = 0; i < m; i++)
+            //if (a > Length || a < 0)
+            //{
+            //    throw new Exception("Ваше число не подходит");
+            //}
+            //if (n > Length || n<0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
+            if (root == null)
             {
-                RemovebyIndex(n);
-            }   
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
+            }
+            else
+            {
+                for (int i = 0; i < m; i++)
+                {
+                    RemovebyIndex(n);
+                }
+            }  
         }
 
         public void Revers()
         {
-            throw new NotImplementedException();
+            if (root == null)
+            {
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
+            }
+            else
+            {
+                Node tmpRoot = root;
+                while(tmpRoot.Next != null)
+                {
+                    Node tmp = tmpRoot.Next;
+                    tmpRoot.Next = tmpRoot.Next.Next;
+                    tmp.Next = root;
+                    root = tmp;
+                }
+            }
         }
 
-        public void MaxMinSelect()
+        public void MaxMin()
         {
             throw new NotImplementedException();
         }
 
-        public void MinMaxBubble()
+        public void MinMax()
         {
-            throw new NotImplementedException();
+            Node tmp = root;
+            Node min = root;
+            for (int i= 1; i< Length;i++)
+            {
+                tmp = tmp.Next;
+                if (tmp.Value<min.Value)
+                {
+                    min.Next = tmp.Next;
+                    tmp.Next = min;
+                    min = min.Next;
+                }  
+            }
         }
 
         public void IndexbyValue(int val)

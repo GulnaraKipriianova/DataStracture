@@ -18,6 +18,10 @@ namespace DadaStructure.ArrayList
             get { return array[a]; }
             set
             {
+                //if (a > length || a < 0)
+                //{
+                //    throw new Exception("Индекс выходит за границы списка");
+                //}
                 if (length != 0)
                 {
                     array[a] = value;
@@ -140,6 +144,10 @@ namespace DadaStructure.ArrayList
 
         public void AddTheIndex(int indx, int a) //добавление элемента по индексу 
         {
+            //if (indx > length || indx < 0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
             if (length!=0)
             {
                 if (length >= array.Length)
@@ -162,10 +170,13 @@ namespace DadaStructure.ArrayList
                 length++;
                 array[0] = a;
             }
-
         }
         public void AddTheIndex(int indx, int [] a) //добавление N элементof по индексу 
         {
+            //if (indx > length || indx < 0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
             if (length != 0)
             {
                 while (length + a.Length > array.Length)
@@ -232,34 +243,77 @@ namespace DadaStructure.ArrayList
         }
         public void RemoveFromEnd() //удалени элемента из конца
         {
-            length--;
+            if(length != 0)
+            {
+                length--;
+            }
+            else
+            {
+                {
+                    length++;
+                    array = new int[] { 0 };
+                }
+            }
         }
         public void RemoveFromEnd(int a) //удалени N элементof из конца
         {
-            for (int i = 1; i <= a; i++)
+            if (length != 0)
             {
-                length--;
+                for (int i = 1; i <= a; i++)
+                {
+                    length--;
+                }
+            }
+            else
+            {
+                {
+                    length++;
+                    array = new int[] { 0 };
+                }
             }
         }
         public void RemovebyIndex(int n) //удaлени элемента по индексу
         {
-            for (int i = n+1; i < array.Length; i++)
+            //if (n > length || n < 0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
+            if (length != 0)
             {
-                array[i-1] = array[i]; //Сдвигаем элементы на один назад
+                for (int i = n + 1; i < array.Length; i++)
+                {
+                    array[i - 1] = array[i]; //Сдвигаем элементы на один назад
+                }
+                length--; //Уменьшаем длину
             }
-            length--; //Уменьшаем длину
+            else
+            {
+                    length++;
+                    array = new int[] { 0 };
+            }
         }
         public void RemovebyIndex(int n, int m) //удaлени элемента по индексу
         {
-            for (int i = 1; i <= m; i++)
+            //if (n > length || n < 0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
+            if (length != 0)
             {
-                for (int j = n + 1; j < array.Length; j++)
+                for (int i = 1; i <= m; i++)
                 {
-                    array[j - 1] = array[j]; //Сдвигаем элементы на один назад
+                    for (int j = n + 1; j < array.Length; j++)
+                    {
+                        array[j - 1] = array[j]; //Сдвигаем элементы на один назад
+                    }
+                    length--;
                 }
-                length--;
             }
-                
+            else
+            {
+                    length++;
+                    array = new int[] { 0 };
+            }
         }
         public void Revers() // Revers
         {
@@ -343,7 +397,7 @@ namespace DadaStructure.ArrayList
              return maxIdx;
             }
         }
-        public void MaxMinSelect() // Сортировка по убыв
+        public void MaxMin() // Сортировка по возр
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -360,7 +414,7 @@ namespace DadaStructure.ArrayList
                 array[i] = temp;
             }
         }
-        public void MinMaxBubble() // Сортировка по возраст
+        public void MinMax() // Сортировка по уб
         {
             int temp;
             for (int i = 0; i < array.Length; i++)
@@ -401,7 +455,6 @@ namespace DadaStructure.ArrayList
                     length--;
                 }
             }
-
         }
     }
 }
