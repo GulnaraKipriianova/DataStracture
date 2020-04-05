@@ -177,6 +177,7 @@ namespace DataStructureTest
         //MaxITest
         [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = 2)]
         [TestCase(new int[] { }, ExpectedResult = 0)]
+        [TestCase(new int[] { 3, 5, 1, 7, 3 }, ExpectedResult = 3)]
         public int MaxITest(int[] a)
         {
             ArrayList actual = new ArrayList(a);
@@ -186,27 +187,28 @@ namespace DataStructureTest
         //MinITest
         [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = 0)]
         [TestCase(new int[] { }, ExpectedResult = 0)]
+        [TestCase(new int[] { 3, 5, 1, 2, 3 }, ExpectedResult = 2)]
         public int MinITest(int[] a)
         {
             ArrayList actual = new ArrayList(a);
             return actual.MinI;
         }
 
-        //MaxMinSelectTest
+        //MaxMinTest
         [TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 8, 7, 6, 3 })]
-        public int[] MaxMinSelectTest(int[] a)
+        public int[] MaxMinTest(int[] a)
         {
             ArrayList actual = new ArrayList(a);
-            actual.MaxMinSelect();
+            actual.MaxMin();
             return actual.ReturnArray();
         }
 
-        //MinMaxBubbleTest
+        //MinMaxTest
         [TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 3, 6, 7, 8 })]
-        public int[] MinMaxBubbleTest(int[] a)
+        public int[] MinMaxTest(int[] a)
         {
             ArrayList actual = new ArrayList(a);
-            actual.MinMaxBubble();
+            actual.MinMax();
             return actual.ReturnArray();
         }
 

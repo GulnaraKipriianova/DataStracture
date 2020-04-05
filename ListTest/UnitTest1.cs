@@ -58,8 +58,9 @@ namespace ListTests
             return actual.ReturnArray();
         }
         //AddTheIndexTest
-        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, 0, ExpectedResult = new int[] { 1, 2, 0, 3, 4, 5 })]
-        [TestCase(new int[] { }, 2, 0, ExpectedResult = new int[] { 0 })]
+        [TestCase(new int[] {1, 2, 3, 4, 5}, 2, 0, ExpectedResult = new int[] { 1, 2, 0, 3, 4, 5 })]
+        [TestCase(new int[] {3}, 2, 0, ExpectedResult = new int[] { 0 })]
+        [TestCase(new int[] { }, 2, 2, ExpectedResult = new int[] { 0 })]
         public int[] AddTheIndexTest(int[] array, int i, int n)
         {
             actual.AddTheEnd(array);
@@ -77,6 +78,7 @@ namespace ListTests
 
         //RemoveFromStartTest
         [TestCase(new int[] { 3, 4, 6, 7 }, ExpectedResult = new int[] { 4, 6, 7 })]
+        [TestCase(new int[] {3}, ExpectedResult = new int[] { 0 })]
         [TestCase(new int[] { }, ExpectedResult = new int[] { 0 })]
         public int[] RemoveFromStartTest(int[] array)
         {
@@ -85,6 +87,7 @@ namespace ListTests
             return actual.ReturnArray();
         }
         [TestCase(new int[] { 3, 4, 6, 7, 4, 2, 1 }, 3, ExpectedResult = new int[] { 7, 4, 2, 1 })]
+        [TestCase(new int[] {3}, 3, ExpectedResult = new int[] { 0 })]
         [TestCase(new int[] { }, 3, ExpectedResult = new int[] { 0 })]
         public int[] RemoveFromStartTest(int[] array, int a)
         {
@@ -95,6 +98,7 @@ namespace ListTests
 
         //RemoveFromEndTest
         [TestCase(new int[] { 3, 4, 6, 7 }, ExpectedResult = new int[] { 3, 4, 6, })]
+        [TestCase(new int[] {3}, ExpectedResult = new int[] { 0 })]
         [TestCase(new int[] { }, ExpectedResult = new int[] { 0 })]
         public int[] RemoveFromEndTest(int[] array)
         {
@@ -103,6 +107,7 @@ namespace ListTests
             return actual.ReturnArray();
         }
         [TestCase(new int[] { 3, 4, 6, 7, 3, 2 }, 3, ExpectedResult = new int[] { 3, 4, 6, })]
+        [TestCase(new int[] { 3 }, 3, ExpectedResult = new int[] { 0 })]
         [TestCase(new int[] { }, 3, ExpectedResult = new int[] { 0 })]
         public int[] RemoveFromEndTest(int[] array, int a)
         {
@@ -113,6 +118,7 @@ namespace ListTests
 
         //RemovebyIndexTest
         [TestCase(new int[] { 3, 4, 6, 7, 9, 11 }, 3, ExpectedResult = new int[] { 3, 4, 6, 9, 11 })]
+        [TestCase(new int[] { 3 }, 3, ExpectedResult = new int[] { 0 })]
         [TestCase(new int[] { }, 3, ExpectedResult = new int[] { 0 })]
         public int[] RemovebyIndexTest(int[] array, int a)
         {
@@ -121,7 +127,8 @@ namespace ListTests
             return actual.ReturnArray();
         }
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 2, 4, ExpectedResult = new int[] { 1, 2, 7 ,8 })]
-        [TestCase(new int[] { }, 3, 4, ExpectedResult = new int[] { 0 })]
+        [TestCase(new int[] { 3 }, 3, 4, ExpectedResult = new int[] { 0 })]
+        [TestCase(new int[] { }, 3, 4, ExpectedResult = new int[] {0})]
         public int[] RemovebyIndexTest(int[] array, int a, int b)
         {
             actual.AddTheEnd(array);
@@ -176,7 +183,7 @@ namespace ListTests
 
         //MinimumTest
         [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = 1)]
-        //[TestCase(new int[] { }, ExpectedResult = 0)]
+        [TestCase(new int[] { }, ExpectedResult = 0)]
         public int MinimumTest(int[] array)
         {
             actual.AddTheEnd(array);
@@ -185,7 +192,9 @@ namespace ListTests
 
         //MaxITest
         [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = 2)]
-        //[TestCase(new int[] { }, ExpectedResult = 0)]
+        [TestCase(new int[] { 3, 5, 1, 2, 3 }, ExpectedResult = 1)]
+        [TestCase(new int[] { 5, 1, 2, 3 }, ExpectedResult = 0)]
+        [TestCase(new int[] { }, ExpectedResult = 0)]
         public int MaxITest(int[] array)
         {
             actual.AddTheEnd(array);
@@ -193,10 +202,9 @@ namespace ListTests
         }
 
         //MinITest
-        //[TestCase(new int[] {1, 2, 3 }, ExpectedResult = 0)] не работает именно с таким массивом,
-        [TestCase(new int[] {0, 1, 2, 3 }, ExpectedResult = 0)]
+        [TestCase(new int[] {1, 2, 3 }, ExpectedResult = 0)]
         [TestCase(new int[] {3, 5, 1, 2, 3 }, ExpectedResult = 2)]
-        //[TestCase(new int[] { }, ExpectedResult = 0)]
+        [TestCase(new int[] { }, ExpectedResult = 0)]
         public int MinITest(int[] array)
         {
             actual.AddTheEnd(array);
@@ -212,14 +220,14 @@ namespace ListTests
         //    return actual.ReturnArray();
         //}
 
-        //MinMaxBubbleTest
-        [TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 3, 6, 7, 8 })]
-        public int[] MinMaxTest(int[] array)
-        {
-            actual.AddTheEnd(array);
-            actual.MinMax();
-            return actual.ReturnArray();
-        }
+        ////MinMaxBubbleTest
+        //[TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 3, 6, 7, 8 })]
+        //public int[] MinMaxTest(int[] array)
+        //{
+        //    actual.AddTheEnd(array);
+        //    actual.MinMax();
+        //    return actual.ReturnArray();
+        //}
 
         ////IndexbyValueTest
         //[TestCase(new int[] { 3, 8, 6, 7 }, 6, ExpectedResult = new int[] { 2 })]

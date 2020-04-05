@@ -37,9 +37,10 @@ namespace DadaStructure.LinkList
                 Node max = root;
                 if (Length == 0)
                 {
+                    //throw new Exception("Hельзя найти максимальный эелемент в пустом списке");
                     root = new Node(0);
                     Length = 1;
-                    max.Value = 0;
+                    max = root;
                 }
                 else
                 {
@@ -63,9 +64,10 @@ namespace DadaStructure.LinkList
                 Node min = root;
                 if (Length == 0)
                 {
-                    root = null;
-                    Length = 0;
-                    min.Value = 0;
+                    //throw new Exception("Hельзя найти минимальный эелемент в пустом списке");
+                    root = new Node(0);
+                    Length = 1;
+                    min = root;
                 }
                 else
                 {
@@ -86,14 +88,15 @@ namespace DadaStructure.LinkList
         {
             get
             {
-                Node number = root;
+                Node number = new Node(0);
                 Node tmp = root;
                 Node min = root;
                 if (Length == 0)
                 {
+                    //throw new Exception("Hельзя найтии индекс минимального эелемента в пустом списке");
                     root = new Node(0);
                     Length = 1;
-                    number = null;
+                    number = root;
                 }
                 else
                 {
@@ -114,14 +117,15 @@ namespace DadaStructure.LinkList
         {
             get
             {
-                Node number = root;
+                Node number = new Node(0);
                 Node tmp = root;
                 Node max = root;
                 if (Length == 0)
                 {
+                    //throw new Exception("Hельзя найтии индекс максимального эелемента в пустом списке");
                     root = new Node(0);
                     Length = 1;
-                    number = null;
+                    number = root;
                 }
                 else
                 {
@@ -225,8 +229,18 @@ namespace DadaStructure.LinkList
         }
         public void AddTheIndex(int indx, int a)
         {
+            //if (n > Length || n<0)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
             if (root == null)
-            AddTheEnd(a);
+            {
+                AddTheEnd(a);
+            }
+            if (Length == 1)
+            {
+                root = new Node(0);
+            }
             else
             {
                 Node tmp = root;
@@ -265,6 +279,12 @@ namespace DadaStructure.LinkList
                 root = new Node(0);
                 Length = 1;
             }
+            if (Length == 1)
+            {
+                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
+            }
             else
             {
                 Node tmp = root;
@@ -289,6 +309,11 @@ namespace DadaStructure.LinkList
             if (root == null)
             {
                 //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
+            }
+            if (root.Next == null)
+            {
                 root = new Node(0);
                 Length = 1;
             }
@@ -331,7 +356,12 @@ namespace DadaStructure.LinkList
             //}
             if (root == null)
             {
-                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                //throw new Exception("Hельзя удалить элемент из пустого списка");
+                root = new Node(0);
+                Length = 1;
+            }
+            if (root.Next == null)
+            {
                 root = new Node(0);
                 Length = 1;
             }

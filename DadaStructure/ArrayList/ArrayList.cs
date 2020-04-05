@@ -144,11 +144,13 @@ namespace DadaStructure.ArrayList
 
         public void AddTheIndex(int indx, int a) //добавление элемента по индексу 
         {
-            //if (indx > length || indx < 0)
-            //{
-            //    throw new Exception("Индекс выходит за границы списка");
-            //}
-            if (length!=0)
+            if (indx > length || indx < 0)
+            {
+                //throw new Exception("Индекс выходит за границы списка");
+                array = new int[1] { 0 };
+                length = 1;
+            }
+            else
             {
                 if (length >= array.Length)
                 {
@@ -161,15 +163,6 @@ namespace DadaStructure.ArrayList
                 }
                 array[indx] = a;
             }
-            else
-            {
-                if (length >= array.Length)
-                {
-                    UpArraySize();
-                }
-                length++;
-                array[0] = a;
-            }
         }
         public void AddTheIndex(int indx, int [] a) //добавление N элементof по индексу 
         {
@@ -177,7 +170,7 @@ namespace DadaStructure.ArrayList
             //{
             //    throw new Exception("Индекс выходит за границы списка");
             //}
-            if (length != 0)
+            if (length != 0 && length!=1)
             {
                 while (length + a.Length > array.Length)
                 {
@@ -205,7 +198,18 @@ namespace DadaStructure.ArrayList
         }
         public void RemoveFromStart() //удалени элемента из начала 
         {
-            if (length!= 0)
+            if (length == 0)
+            {
+                //throw new Exception("Hельзя удалить элемент из пустого массива");
+                length++;
+                array = new int[] { 0 };
+            }
+            if (length == 1)
+            {
+                length = 1;
+                array[0] = 0;
+            }
+            else
             {
                 for (int i = 1; i < array.Length; i++)
                 {
@@ -213,15 +217,23 @@ namespace DadaStructure.ArrayList
                 }
                 length--; //Уменьшаем длину
             }
-            else
-            {
-                length ++;
-                array = new int [] {0};
-            }
+            //else
+           
         }
         public void RemoveFromStart(int a) //удалени N элементof из начала 
         {
-            if (length!=0)
+            if (length == 0)
+            {
+                //throw new Exception("Hельзя удалить элемент из пустого массива");
+                length++;
+                array = new int[] { 0 };
+            }
+            if (length == 1)
+            {
+                length = 1;
+                array[0] = 0;
+            }
+            else
             {
                 for (int j = 1; j <= a; j++)
                 {
@@ -233,23 +245,21 @@ namespace DadaStructure.ArrayList
                     length--; //Уменьшаем длину
                 }
             }
-            else
-            {
-                {
-                    length++;
-                    array = new int[] { 0 };
-                }
-            }
         }
         public void RemoveFromEnd() //удалени элемента из конца
         {
-            if(length != 0)
+            if (length == 1)
+            {
+                length--;
+            }
+            if (length != 0)
             {
                 length--;
             }
             else
             {
                 {
+                    //throw new Exception("Hельзя удалить элемент из пустого массива");
                     length++;
                     array = new int[] { 0 };
                 }
@@ -257,6 +267,10 @@ namespace DadaStructure.ArrayList
         }
         public void RemoveFromEnd(int a) //удалени N элементof из конца
         {
+            if (length == 1)
+            {
+                length--;
+            }
             if (length != 0)
             {
                 for (int i = 1; i <= a; i++)
@@ -267,6 +281,7 @@ namespace DadaStructure.ArrayList
             else
             {
                 {
+                    //throw new Exception("Hельзя удалить элементы из пустого массива");
                     length++;
                     array = new int[] { 0 };
                 }
@@ -278,18 +293,22 @@ namespace DadaStructure.ArrayList
             //{
             //    throw new Exception("Индекс выходит за границы списка");
             //}
-            if (length != 0)
+            if (length == 1)
+            {
+                length--;
+            }
+            if (length == 0)
+            {
+                length++;
+                array = new int[] { 0 };
+            }
+            else
             {
                 for (int i = n + 1; i < array.Length; i++)
                 {
                     array[i - 1] = array[i]; //Сдвигаем элементы на один назад
                 }
                 length--; //Уменьшаем длину
-            }
-            else
-            {
-                    length++;
-                    array = new int[] { 0 };
             }
         }
         public void RemovebyIndex(int n, int m) //удaлени элемента по индексу
@@ -298,6 +317,10 @@ namespace DadaStructure.ArrayList
             //{
             //    throw new Exception("Индекс выходит за границы списка");
             //}
+            if (length == 1)
+            {
+                length--;
+            }
             if (length != 0)
             {
                 for (int i = 1; i <= m; i++)
@@ -311,8 +334,9 @@ namespace DadaStructure.ArrayList
             }
             else
             {
-                    length++;
-                    array = new int[] { 0 };
+                //throw new Exception("Hельзя удалить элементы из пустого массива");    
+                length++;
+                array = new int[] { 0 };
             }
         }
         public void Revers() // Revers
@@ -338,7 +362,12 @@ namespace DadaStructure.ArrayList
                         }
                     }
                 }
-                else max = 0;
+                else
+                {
+                    //throw new Exception("Hельзя найти элемент в пустом массиве");
+                    max = 0;
+                }
+                   
          return max; } }
         public int Minimum 
         { get 
@@ -354,14 +383,23 @@ namespace DadaStructure.ArrayList
                         }
                     }
                 }
-                else min = 0;
-         return min; } }
+                else
+                {
+                    //throw new Exception("Hельзя найти элемент в пустом массиве");
+                    min = 0;
+                }
+                return min; } }
         
         public int MinI
         { get 
             {
-                int minInd = 0;
-                if (length != 0)
+                int minIdx = 0;
+                if (length == 0)
+                {
+                    //throw new Exception("Hельзя найти интедкс элемента в пустом массиве");
+                    minIdx = 0;
+                }
+                else
                 {
                     int min = array[0];
                     
@@ -370,18 +408,22 @@ namespace DadaStructure.ArrayList
                         if (min > array[i])
                         {
                             min = array[i];
-                            minInd = i;
+                            minIdx = i;
                         }
                     }
                 }
-                else minInd = 0;
                 return minIdx; } }
         public int MaxI
         {
             get
             {
                 int maxIdx = 0;
-                if (length != 0)
+                if (length == 0)
+                {
+                    //throw new Exception("Hельзя найти интедкс элемента в пустом массиве");
+                    maxIdx = 0;
+                }
+                else
                 {
                     int max = array[0];
                     for (int i = 1; i < length; i++)
@@ -393,7 +435,6 @@ namespace DadaStructure.ArrayList
                         }
                     }
                 }
-             else maxIdx = 0;
              return maxIdx;
             }
         }
@@ -433,28 +474,53 @@ namespace DadaStructure.ArrayList
         }
         public void IndexbyValue(int val)
         {
-            for (int i=0; i<length; i++)
+            if (length !=0)
             {
-                if (array[i]==val)
+                for (int i = 0; i < length; i++)
                 {
-                    length = 1;
-                    array[0] = i;
+                    if (array[i] == val)
+                    {
+                        length = 1;
+                        array[0] = i;
+                    }
                 }
             }
+            else
+            {
+                //throw new Exception("Hельзя удалить элементы из пустого массива");    
+                length++;
+                array = new int[] { 0 };
+            }
+            
+
         }
         public void DeletbyValue(int val)
         {
-            for (int i = 0; i < length; i++)
+            if (length == 1)
             {
-                if (array[i] == val)
+                array = new int[1] { 0 };
+                length = 1;
+            }
+            if (length != 0)
+            {
+                for (int i = 0; i < length; i++)
                 {
-                    for (int j = i + 1; j < array.Length; j++)
+                    if (array[i] == val)
                     {
-                        array[j - 1] = array[j]; //Сдвигаем элементы на один назад
+                        for (int j = i + 1; j < array.Length; j++)
+                        {
+                            array[j - 1] = array[j]; //Сдвигаем элементы на один назад
+                        }
+                        length--;
                     }
-                    length--;
                 }
             }
+            else
+            {
+                //throw new Exception("Hельзя удалить элементы из пустого массива");    
+                length++;
+                array = new int[] { 0 };
+            } 
         }
     }
 }

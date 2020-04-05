@@ -49,7 +49,14 @@ namespace DadaStructure.BiDerList
             {
                 L2Node tmp = root;
                 L2Node max = root;
-                if (Length != null)
+                if (Length == 0)
+                {
+                    //throw new Exception("Hельзя найти максимальный эелемент в пустом списке");
+                    root = new L2Node(0);
+                    Length = 1;
+                    max = root;
+                }
+                else 
                 {
                     while (tmp.Next != null)
                     {
@@ -60,7 +67,6 @@ namespace DadaStructure.BiDerList
                         }
                     }
                 }
-                else { max.Value = 0; }
                 return max.Value;
             }
         }
@@ -72,9 +78,10 @@ namespace DadaStructure.BiDerList
                 L2Node min = root;
                 if (Length == 0)
                 {
+                    //throw new Exception("Hельзя найти минимальный эелемент в пустом списке");
                     root = new L2Node(0);
                     Length = 1;
-                    min.Value = 0;
+                    min = root;
                 }
                 else
                 {
@@ -95,14 +102,15 @@ namespace DadaStructure.BiDerList
         {
             get
             {
-                L2Node number = root;
+                L2Node number = new L2Node(0);
                 L2Node tmp = root;
                 L2Node min = root;
                 if (Length == 0)
                 {
+                    //throw new Exception("Hельзя найти интедкс минимального эелемента в пустом списке");
                     root = new L2Node(0);
                     Length = 1;
-                    number = null;
+                    number = root;
                 }
                 else
                 {
@@ -119,19 +127,19 @@ namespace DadaStructure.BiDerList
                 return number.Value;
             }
         }
-
         public int MaxI 
         {
             get
             {
-                L2Node number = root;
+                L2Node number = new L2Node(0);
                 L2Node tmp = root;
                 L2Node max = root;
                 if (Length == 0)
                 {
+                    //throw new Exception("Hельзя найти интедкс минимального эелемента в пустом списке");
                     root = new L2Node(0);
                     Length = 1;
-                    number = null;
+                    number = root;
                 }
                 else
                 {
@@ -240,9 +248,15 @@ namespace DadaStructure.BiDerList
 
         public void AddTheIndex(int indx, int a)
         {
-            if (Length == 0)
+            if (root == null)
             {
                 root = new L2Node(a);
+                end = root;
+                Length = 1;
+            }
+            if (Length == 1)
+            {
+                root = new L2Node(0);
                 end = root;
                 Length = 1;
             }
@@ -280,6 +294,10 @@ namespace DadaStructure.BiDerList
         }
         public void AddTheIndex(int indx, int[] a)
         {
+            //if (indx > Length)
+            //{
+            //    throw new Exception("Индекс выходит за границы списка");
+            //}
             if (root == null)
                 AddTheEnd(a);
             else
@@ -298,6 +316,12 @@ namespace DadaStructure.BiDerList
             {
                 //throw new Exception("Hельзя удалить первый элемент из пустого списка");
                 root = new L2Node (0);
+                end = root;
+                Length = 1;
+            }
+            if (root == end)
+            {
+                root = new L2Node(0);
                 end = root;
                 Length = 1;
             }
@@ -322,6 +346,12 @@ namespace DadaStructure.BiDerList
             if (root == null)
             {
                 //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new L2Node(0);
+                end = root;
+                Length = 1;
+            }
+            if (root == end)
+            {
                 root = new L2Node(0);
                 end = root;
                 Length = 1;
@@ -359,6 +389,12 @@ namespace DadaStructure.BiDerList
             if (root == null)
             {
                 //throw new Exception("Hельзя удалить первый элемент из пустого списка");
+                root = new L2Node(0);
+                end = root;
+                Length = 1;
+            }
+            if (root == end)
+            {
                 root = new L2Node(0);
                 end = root;
                 Length = 1;
