@@ -11,10 +11,28 @@ namespace DadaStructure.LinkList
         public int Length { get; private set; }
         public int this[int a] //Доступ по индексу, изм по индексу 
         {
-            //get { return Node; }
+            get {
+               if(Length == 0)
+               {
+                  throw new Exception("Индекс выходит за границы списка");
+               }
+               else
+               {
+                    Node tmp = root;
+                    for (int i = 0; i < a; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    return tmp.Value;
+               } 
+            }
             set
             {
-                if (Length != 0)
+                if (Length== 0)
+                {
+                    throw new Exception("Индекс выходит за границы списка");
+                }
+                else
                 {
                     Node tmp = root;
                     for (int i = 0; i < a; i++)
@@ -22,10 +40,6 @@ namespace DadaStructure.LinkList
                         tmp = tmp.Next;
                     }
                     tmp.Value = value;
-                }
-                else
-                {
-                    throw new Exception("Индекс выходит за границы списка");
                 }
             }
         }
@@ -446,12 +460,48 @@ namespace DadaStructure.LinkList
 
         public void IndexbyValue(int val)
         {
-            throw new NotImplementedException();
+            if (Length != 0)
+            {
+                Node tmp = root;
+                for (int i = 1; i < Length; i++)
+                {
+                      tmp = tmp.Next;
+                    if (tmp.Value == val)
+                    {
+                        root = new Node(i);
+                        Length = 1;
+                    }       
+                }
+            }
+            else
+            {
+                //throw new Exception("Hельзя найти элементы в пустом списке");    
+                root = null;
+                Length = 0;
+            }
         }
 
         public void DeletbyValue(int val)
         {
-            throw new NotImplementedException();
+            if (Length != 0)
+            {
+                Node tmp = root;
+                for (int i = 1; i < Length; i++)
+                {
+                    tmp = tmp.Next;
+                    if (tmp.Value == val)
+                    {
+                        RemovebyIndex(i);
+                        i--;
+                    }
+                }
+            }
+            else
+            {
+                //throw new Exception("Hельзя найти элементы в пустом списке");    
+                root = null;
+                Length = 0;
+            }
         }
     }
 }

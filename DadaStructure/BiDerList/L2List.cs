@@ -10,36 +10,64 @@ namespace DadaStructure.BiDerList
         private L2Node root;
         private L2Node end;
         public int Length { get; private set; }
-        public int this[int a] //Доступ по индексу, изм по индексу 
+        public int this[int a]
         {
-            //get { return ; }
-            set
+            get
             {
-                if (Length != 0)
+                if (a > Length || a < 0)
                 {
+                    throw new Exception("Индекс выходит за границы списка");
+                }
+                else
+                {
+                    L2Node tmp;
                     if (Length/2 > a)
                     {
-                        L2Node tmp = root;
+                        tmp = root;
                         for (int i = 0; i < a; i++)
                         {
                             tmp = tmp.Next;
                         }
-                        tmp.Value = value;
                     }
                     else
                     {
-                        L2Node tmp = root;
-                        for (int i = 1; i < Length - a - 2; i++)
+                        tmp = end;
+                        for (int i = Length-1; i > a; i--)
                         {
+                            ;
                             tmp = tmp.Previous;
                         }
-                        tmp.Value = value;
-                    }
+                    } 
+                    return tmp.Value;
                 }
-                else
+            }
+            set
+            {
+                if (a > Length || a < 0)
                 {
                     throw new Exception("Индекс выходит за границы списка");
                 }
+                else
+                {
+                    L2Node tmp = root;
+                    if (Length / 2 > a)
+                    {
+                        for (int i = 0; i < a; i++)
+                        {
+                            tmp = tmp.Next;
+                        }
+                    }
+                    else
+                    {
+                        for (int i = Length; i > a; i--)
+                        {
+                            tmp = end;
+                            tmp = tmp.Previous;
+                        }
+                    }
+                    tmp.Value = value;
+                }
+                
             }
         }
 
@@ -477,12 +505,48 @@ namespace DadaStructure.BiDerList
 
         public void IndexbyValue(int val)
         {
-            throw new NotImplementedException();
+            if (Length != 0)
+            {
+                L2Node tmp = root;
+                for (int i = 1; i < Length; i++)
+                {
+                    tmp = tmp.Next;
+                    if (tmp.Value == val)
+                    {
+                        root = new L2Node(i);
+                        Length = 1;
+                    }
+                }
+            }
+            else
+            {
+                //throw new Exception("Hельзя найти элементы в пустом списке");    
+                root = null;
+                Length = 0;
+            }
         }
 
         public void DeletbyValue(int val)
         {
-            throw new NotImplementedException();
+            if (Length != 0)
+            {
+                L2Node tmp = root;
+                for (int i = 1; i < Length; i++)
+                {
+                    tmp = tmp.Next;
+                    if (tmp.Value == val)
+                    {
+                        RemovebyIndex(i);
+                        i--;
+                    }
+                }
+            }
+            else
+            {
+                //throw new Exception("Hельзя найти элементы в пустом списке");    
+                root = null;
+                Length = 0;
+            }
         }
     }
 }
