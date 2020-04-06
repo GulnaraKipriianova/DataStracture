@@ -438,7 +438,7 @@ namespace DadaStructure.ArrayList
              return maxIdx;
             }
         }
-        public void MaxMin() // Сортировка по возр
+        public void MaxMin() // Сортировка по убыв
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -455,7 +455,7 @@ namespace DadaStructure.ArrayList
                 array[i] = temp;
             }
         }
-        public void MinMax() // Сортировка по уб
+        public void MinMax() // Сортировка по возр
         {
             int temp;
             for (int i = 0; i < array.Length; i++)

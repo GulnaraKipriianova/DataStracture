@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace DadaStructure.LinkList
@@ -418,45 +419,99 @@ namespace DadaStructure.LinkList
 
         public void Revers()
         {
-            if (root == null)
+            Node tmpRoot = root;
+            while(tmpRoot.Next != null)
             {
-                //throw new Exception("Hельзя удалить первый элемент из пустого списка");
-                root = new Node(0);
-                Length = 1;
-            }
-            else
-            {
-                Node tmpRoot = root;
-                while(tmpRoot.Next != null)
-                {
                     Node tmp = tmpRoot.Next;
                     tmpRoot.Next = tmpRoot.Next.Next;
                     tmp.Next = root;
                     root = tmp;
+            }
+        }
+
+        public void MaxMin()// сортировка по убыванию
+        {
+            if (Length > 1)
+            {
+                for (int i = 1; i < Length ; i++)
+                {
+                    Node tmp = root;
+                    if (root.Value < tmp.Next.Value)
+                    {
+                        tmp = tmp.Next;
+                        root.Next = tmp.Next;
+                        tmp.Next = root;
+                        root = tmp;
+                    }
+                    while (tmp.Next.Next != null)
+                    {
+                        Node left = tmp.Next;
+                        Node right = tmp.Next.Next;
+                        if (left.Value < right.Value)
+                        {
+                            left.Next = right.Next;
+                            right.Next = left;
+                            tmp.Next = right;
+                        }
+                        tmp = tmp.Next;
+                    }
+                }
+                if (Length == 1)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                }
+                if (Length == null)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                    root = new Node(0);
+                    Length = 1;
                 }
             }
         }
 
-        public void MaxMin()
+        public void MinMax()// сортировка по возразтанию
         {
-            throw new NotImplementedException();
+            if(Length>1)
+            {
+                for (int i = 1; i < Length; i++)
+                {
+                    Node tmp = root;
+                    if (root.Value > tmp.Next.Value)
+                    {
+                        tmp = tmp.Next;
+                        root.Next = tmp.Next;
+                        tmp.Next = root;
+                        root = tmp;
+                    }
+                    while (tmp.Next.Next != null)
+                    {
+                        Node left = tmp.Next;
+                        Node right = tmp.Next.Next;
+                        if (left.Value > right.Value)
+                        {
+                            left.Next = right.Next;
+                            right.Next = left;
+                            tmp.Next = right;
+                        }
+                        tmp = tmp.Next;
+                    }
+                }
+                if (Length == 1)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                }
+                if (Length == null)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                    root = new Node(0);
+                    Length = 1;
+                }
+
+            }
+            
         }
 
-        public void MinMax()
-        {
-            Node tmp = root;
-            Node min = root;
-            for (int i= 1; i< Length;i++)
-            {
-                tmp = tmp.Next;
-                if (tmp.Value<min.Value)
-                {
-                    min.Next = tmp.Next;
-                    tmp.Next = min;
-                    min = min.Next;
-                }  
-            }
-        }
+
 
         public void IndexbyValue(int val)
         {

@@ -223,23 +223,29 @@ namespace ListTests
             return actual.MinI;
         }
 
-        ////MaxMinTest
-        //[TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 8, 7, 6, 3 })]
-        //public int[] MaxMinSelectTest(int[] array)
-        //{
-        //    actual.AddTheEnd(array);
-        //    actual.MaxMin();
-        //    return actual.ReturnArray();
-        //}
+        //MaxMinTest
+        [TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 8, 7, 6, 3 })]
+        [TestCase(new int[] { 5, 8, 3, 6, 4, 7}, ExpectedResult = new int[] { 8,7,6,5,4,3 })]
+        [TestCase(new int[] { 5 }, ExpectedResult = new int[] { 5 })]
+        [TestCase(new int[] { }, ExpectedResult = new int[] { })]
+        public int[] MaxMinSelectTest(int[] array)
+        {
+            actual.AddTheEnd(array);
+            actual.MaxMin();
+            return actual.ReturnArray();
+        }
 
-        ////MinMaxBubbleTest
-        //[TestCase(new int[] { 3, 8, 6, 7 }, ExpectedResult = new int[] { 3, 6, 7, 8 })]
-        //public int[] MinMaxTest(int[] array)
-        //{
-        //    actual.AddTheEnd(array);
-        //    actual.MinMax();
-        //    return actual.ReturnArray();
-        //}
+        //MinMaxTest
+        [TestCase(new int[] { 3, 8, 7, 5 }, ExpectedResult = new int[] { 3, 5, 7, 8 })]
+        [TestCase(new int[] { 5, 8, 3, 6, 4 ,7,1 }, ExpectedResult = new int[] { 1,3,4,5,6,7,8 })]
+        [TestCase(new int[] {5}, ExpectedResult = new int[] {5})]
+        [TestCase(new int[] { }, ExpectedResult = new int[] { })]
+        public int[] MinMaxTest(int[] array)
+        {
+            actual.AddTheEnd(array);
+            actual.MinMax();
+            return actual.ReturnArray();
+        }
 
         //IndexbyValueTest
         [TestCase(new int[] { 3, 8, 6, 7 }, 6, ExpectedResult = new int[] { 2 })]
@@ -258,7 +264,5 @@ namespace ListTests
             actual.DeletbyValue(b);
             return actual.ReturnArray();
         }
-
-
     }
 }
