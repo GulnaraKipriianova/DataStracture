@@ -511,8 +511,6 @@ namespace DadaStructure.LinkList
             
         }
 
-
-
         public void IndexbyValue(int val)
         {
             if (Length != 0)

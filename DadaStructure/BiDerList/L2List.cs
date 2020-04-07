@@ -495,12 +495,92 @@ namespace DadaStructure.BiDerList
         }
         public void MaxMin()
         {
-            throw new NotImplementedException();
+            if(Length > 1)
+            {
+                for (int i = 1; i < Length; i++)
+                {
+                    L2Node tmp = root;
+                    if (root.Value < tmp.Next.Value)
+                    {
+                        tmp = tmp.Next;
+                        root.Next = tmp.Next;
+                        root.Previous = tmp;
+                        tmp.Next = root;
+                        tmp.Previous = null;
+                        root = tmp;
+                    }
+                    while (tmp.Next.Next != null)
+                    {
+                        L2Node left = tmp.Next;
+                        L2Node right = tmp.Next.Next;
+                        if (left.Value < right.Value)
+                        {
+                            left.Next = right.Next;
+                            left.Previous = right;
+                            right.Next = left;
+                            right.Previous = tmp;
+                            tmp.Next = right;
+                        }
+                        tmp = tmp.Next;
+                    }
+                }
+                if (Length == 1)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                }
+                if (Length == null)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                    root = new L2Node(0);
+                    Length = 1;
+                }
+
+            }
         }
 
         public void MinMax()
         {
-            throw new NotImplementedException();
+            if (Length > 1)
+            {
+                for (int i = 1; i < Length; i++)
+                {
+                    L2Node tmp = root;
+                    if (root.Value > tmp.Next.Value)
+                    {
+                        tmp = tmp.Next;
+                        root.Next = tmp.Next;
+                        root.Previous = tmp;
+                        tmp.Next = root;
+                        tmp.Previous = null;
+                        root = tmp;
+                    }
+                    while (tmp.Next.Next != null)
+                    {
+                        L2Node left = tmp.Next;
+                        L2Node right = tmp.Next.Next;
+                        if (left.Value > right.Value)
+                        {
+                            left.Next = right.Next;
+                            left.Previous = right;
+                            right.Next = left;
+                            right.Previous = tmp;
+                            tmp.Next = right;
+                        }
+                        tmp = tmp.Next;
+                    }
+                }
+                if (Length == 1)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                }
+                if (Length == null)
+                {
+                    //throw new Exception("Невозможно отсортироватьпутой список");
+                    root = new L2Node(0);
+                    Length = 1;
+                }
+
+            }
         }
 
         public void IndexbyValue(int val)
